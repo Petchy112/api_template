@@ -1,0 +1,13 @@
+{
+  "name": "api_template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Petchy112/api_template.git",
+  "author": "Kittikan Ditkhanan <petch_501_@hotmail.com>",
+  "license": "MIT",
+  
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.9"
+  }
+}
