@@ -1,4 +1,3 @@
-import merge from 'lodash.merge'
 import fs from 'fs'
 
 const config = {
@@ -11,7 +10,10 @@ const config = {
         password : '15918Petch',
         host : 'testmongoDB',
         port : 27017,
-        database : 'test'
+        database : 'test',
+        collectionPrelix : 'test'
     }
 
 }
+
+export default config
