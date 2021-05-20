@@ -1,8 +1,10 @@
-import logger from 'logger'
+import logger from '../logger'
 import UniversalError from '../errors/UniversalError'
 import config from '../config'
 import {User} from '../models/user'
 import mongoose from 'mongoose'
+
+
 const log = logger.getLogger('../services/user')
 
 

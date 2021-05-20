@@ -1,16 +1,16 @@
-import { Router , Request as ExpressRequest , Response as ExpressResponse , NextFunction, } from 'express'
+import express from 'express'
 import config from '../../../config'             
 import validator from 'validator'
 import UniversalError from '../../../errors/UniversalError'
 import { User } from '../../../models/user'
 import userService from '../../../services/user'
 
-const router : Router = Router()
+const router =  express.Router()
 
-router.post('/register', async(request,response : ExpressResponse , next : NextFunction) => {
+router.post('/register', async(req,res,next) => {
     try {
         const errors = new UniversalError
-    const {body} = request
+    const {body} = req
     if(!body.firstName){
         errors.addError('empty/firstName','Please input firstname')
     }
@@ -23,12 +23,14 @@ router.post('/register', async(request,response : ExpressResponse , next : NextF
     if(!body.email){
         errors.addError('empty/email','Please input your email.')
     }
-    const user = await userService.register(body,request.get('host'))
+    const user = await userService.register(body,req.get('host'))
 
-    response.json(user)
+    res.json(user)
     }
     catch (error) {
         next(error)
     }
     
 })
+
+export default router

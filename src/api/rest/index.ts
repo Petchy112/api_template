@@ -1,8 +1,8 @@
-import express, { Express } from 'express'
+import express, { Express, NextFunction ,Request , Response } from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import routes from './routes'
-import logger from 'logger'
+import logger from '../../logger'
 import config from '../../config'
 
 export default () => {
@@ -13,12 +13,20 @@ export default () => {
     app.use(cors())
     
     app.use(bodyParser.json())
-    app.use(bodyParser.urlencoded({ extended:false }))
+    app.use(bodyParser.urlencoded({ extended: false }))
     routes(app)
 
-    app.use((error, request ,response, next) => {
+    /* eslint-disable-next-line */
+    app.use((error, request:Request ,response : Response, next : NextFunction) => {
         if (error.message === 'nothing') {
             return
+        }
+        if (error.universal) {
+            const status = error.status
+            error.status = undefined
+            error.amount = undefined
+            error.universal = undefined
+            error.response(status).json({error : {message : error.message , ...error}})
         }
         throw error
     })

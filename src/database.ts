@@ -1,6 +1,6 @@
-import logger from 'logger'
-import mongoose, { Mongoose } from 'mongoose'
+import mongoose from 'mongoose'
 import config from './config'
+import logger from './logger'
 
 
 export default async () => {
