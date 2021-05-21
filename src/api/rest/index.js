@@ -1,9 +1,9 @@
-import express, { Express, NextFunction ,Request , Response } from 'express'
+import express, { Express } from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import routes from './routes'
-import logger from '../../logger'
-import config from '../../config'
+
+import config from 'config'
 
 export default () => {
     const app : Express = express()
@@ -17,7 +17,7 @@ export default () => {
     routes(app)
 
     /* eslint-disable-next-line */
-    app.use((error, request:Request ,response : Response, next : NextFunction) => {
+    app.use((error, request , response , next ) => {
         if (error.message === 'nothing') {
             return
         }
@@ -31,5 +31,5 @@ export default () => {
         throw error
     })
 
-    app.listen(config.api.port,() => logger.getLogger('rest').info(`Server start at 0.0.0.0:${config.api.port}`))
+    app.listen(config.api.port,() => console.log(`Server start at 0.0.0.0:${config.api.port}`))
 }
