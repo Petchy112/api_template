@@ -16,6 +16,8 @@
     "mongoose-hidden": "^1.9.1",
     "nodemon": "^2.0.7",
     "pluralize": "^8.0.0",
+    "ts-mongoose": "^0.0.24",
+    "ts-optchain": "^0.1.8",
     "validator": "^13.6.0"
   },
   "scripts": {
